@@ -2,8 +2,6 @@
 
 import { signInSchema } from "@/schemas/auth.schema";
 import * as z from "zod";
-import bcrypt from "bcryptjs";
-import { getUserByEmail } from "@/data/user";
 import { signIn } from "@/auth";
 import { defaultRedirectPath } from "@/config/routes";
 import { AuthError } from "next-auth";

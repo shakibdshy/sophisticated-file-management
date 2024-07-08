@@ -1,23 +1,22 @@
-import { auth, signOut } from "@/auth";
-import { Avatar, Button } from "@mui/material";
+"use client";
 
-export default async function Dashboard() {
-  const session = await auth();
+import { signOut } from "@/auth";
+import { useCurrentUser } from "@/hooks/use-current-user";
+import { Button } from "@mui/material";
+
+export default function DashboardPage() {
+  const user = useCurrentUser();
+
+  const onClick = () => {
+    signOut();
+  };
 
   return (
     <div>
-      {JSON.stringify(session)}
-      <form
-        action={async () => {
-          "use server";
-          await signOut();
-        }}
-      >
-        <Avatar alt="Remy Sharp" src={session?.user?.image ?? "/avatar.png"} />
-        <Button type="submit" variant="contained" color="error">
-          Sign Out
-        </Button>
-      </form>
+      <pre>{JSON.stringify(user, null, 2)}</pre>
+      <Button onClick={onClick} variant="contained" color="error">
+        Sign Out
+      </Button>
     </div>
   );
 }
