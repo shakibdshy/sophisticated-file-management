@@ -2,6 +2,11 @@
 
 import { signInSchema } from "@/schemas/auth.schema";
 import * as z from "zod";
+import bcrypt from "bcryptjs";
+import { getUserByEmail } from "@/data/user";
+import { signIn } from "@/auth";
+import { defaultRedirectPath } from "@/config/routes";
+import { AuthError } from "next-auth";
 
 export const signInAction = async (values: z.infer<typeof signInSchema>) => {
   const validatedFields = signInSchema.safeParse(values);
@@ -10,5 +15,24 @@ export const signInAction = async (values: z.infer<typeof signInSchema>) => {
     return { error: "Invalid Credentials!" };
   }
 
-  return { success: "Successfully Signed In!" };
+  const { email, password } = validatedFields.data;
+
+  try {
+    await signIn("credentials", {
+      email,
+      password,
+      redirectTo: defaultRedirectPath,
+    });
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return { error: "Invalid Credentials!" };
+        default:
+          return { error: "Something went wrong!" };
+      }
+    }
+
+    throw error;
+  }
 };

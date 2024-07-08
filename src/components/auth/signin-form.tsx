@@ -40,15 +40,12 @@ const initialValues: SignInSchema = {
 export default function SignInForm() {
   const [reset, setReset] = useState({});
   const [isError, setError] = useState<string | undefined>("");
-  const [isSuccess, setSuccess] = useState<string | undefined>("");
   const [isPending, setIsPending] = useTransition();
 
   const onSubmit: SubmitHandler<SignInSchema> = (data) => {
-    console.log(data);
     setIsPending(() => {
       signInAction(data).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        setError(data?.error);
       });
     });
     // setReset({ email: "", password: "", isRememberMe: false });
@@ -116,11 +113,11 @@ export default function SignInForm() {
                     />
                   </Grid>
                 </Grid>
-                {isSuccess && (
+                {/* {isSuccess && (
                   <Alert severity="success" sx={{ width: "100%" }}>
                     {isSuccess}
                   </Alert>
-                )}
+                )} */}
                 {isError && (
                   <Alert severity="error" sx={{ width: "100%" }}>
                     {isError}
