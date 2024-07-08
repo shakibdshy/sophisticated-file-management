@@ -10,7 +10,8 @@ export const signInSchema = z.object({
 export type SignInSchema = z.infer<typeof signInSchema>;
 
 export const signUpSchema = z.object({
-  name: z.string().min(1, { message: "Name is required" }),
+  fName: z.string().min(1, { message: "First Name is required" }),
+  lName: z.string().min(1, { message: "Last Name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
   password: z
     .string()
