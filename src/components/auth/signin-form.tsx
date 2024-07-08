@@ -5,6 +5,7 @@ import {
   Button,
   Card,
   CardContent,
+  CardHeader,
   Divider,
   Grid,
   Stack,
@@ -38,10 +39,14 @@ export default function SignInForm() {
     <Card sx={{ maxWidth: 500, margin: "auto", boxShadow: 0, borderRadius: 5 }}>
       <CardContent>
         <Stack spacing={2} alignItems="center">
-          <h1 className="text-3xl font-bold">Welcome Back</h1>
-          <p className="text-muted-foreground">
-            Enter your credentials to access your account
-          </p>
+          <CardHeader
+            className="text-center"
+            title="Welcome Back"
+            subheader="Enter your credentials to access your account"
+            classes={{
+              title: "text-3xl font-bold mb-3",
+            }}
+          />
           <SocialIcon />
           <Root>
             <Divider component="div" role="presentation">
@@ -63,6 +68,11 @@ export default function SignInForm() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  sx={{
+                    "& .MuiInputBase-root": {
+                      minHeight: 56,
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -74,6 +84,11 @@ export default function SignInForm() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  sx={{
+                    "& .MuiInputBase-root": {
+                      minHeight: 56,
+                    },
+                  }}
                 />
               </Grid>
             </Grid>
@@ -81,13 +96,17 @@ export default function SignInForm() {
               type="submit"
               fullWidth
               variant="contained"
+              size="large"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Sign In
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/auth/signup" className="no-underline text-green-700 hover:underline">
+                <Link
+                  href="/auth/signup"
+                  className="no-underline text-green-700 hover:underline"
+                >
                   Don&apos;t have an account? Sign up
                 </Link>
               </Grid>
