@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -15,6 +16,12 @@ import {
 } from "@mui/material";
 import SocialIcon from "./social-icon";
 import Link from "next/link";
+import { Form } from "../ui/form";
+import { signInSchema, SignInSchema } from "@/schemas/auth.schema";
+import { useState, useTransition } from "react";
+import { SubmitHandler } from "react-hook-form";
+import { signIn } from "next-auth/react";
+import { signInAction } from "@/actions/signin-action";
 
 const Root = styled("div")(({ theme }) => ({
   width: "100%",
@@ -25,14 +32,26 @@ const Root = styled("div")(({ theme }) => ({
   },
 }));
 
+const initialValues: SignInSchema = {
+  email: "",
+  password: "",
+};
+
 export default function SignInForm() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+  const [reset, setReset] = useState({});
+  const [isError, setError] = useState<string | undefined>("");
+  const [isSuccess, setSuccess] = useState<string | undefined>("");
+  const [isPending, setIsPending] = useTransition();
+
+  const onSubmit: SubmitHandler<SignInSchema> = (data) => {
+    console.log(data);
+    setIsPending(() => {
+      signInAction(data).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
     });
+    // setReset({ email: "", password: "", isRememberMe: false });
   };
 
   return (
@@ -53,65 +72,83 @@ export default function SignInForm() {
               <Typography fontSize={16}>Or continue with</Typography>
             </Divider>
           </Root>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+          <Form<SignInSchema>
+            validationSchema={signInSchema}
+            resetValues={reset}
+            onSubmit={onSubmit}
+            useFormProps={{
+              mode: "onChange",
+              defaultValues: initialValues,
+            }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  required
+            {({ register, formState: { errors } }) => (
+              <Stack spacing={2} alignItems="center">
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      {...register("email")}
+                      error={!!errors.email}
+                      helperText={errors.email?.message}
+                      disabled={isPending}
+                      fullWidth
+                      label="Email Address"
+                      sx={{
+                        "& .MuiInputBase-root": {
+                          minHeight: 56,
+                        },
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      {...register("password")}
+                      error={!!errors.password}
+                      helperText={errors.password?.message}
+                      disabled={isPending}
+                      fullWidth
+                      label="Password"
+                      type="password"
+                      sx={{
+                        "& .MuiInputBase-root": {
+                          minHeight: 56,
+                        },
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+                {isSuccess && (
+                  <Alert severity="success" sx={{ width: "100%" }}>
+                    {isSuccess}
+                  </Alert>
+                )}
+                {isError && (
+                  <Alert severity="error" sx={{ width: "100%" }}>
+                    {isError}
+                  </Alert>
+                )}
+                <Button
+                  type="submit"
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  sx={{
-                    "& .MuiInputBase-root": {
-                      minHeight: 56,
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  sx={{
-                    "& .MuiInputBase-root": {
-                      minHeight: 56,
-                    },
-                  }}
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              size="large"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link
-                  href="/auth/signup"
-                  className="no-underline text-green-700 hover:underline"
+                  variant="contained"
+                  size="large"
+                  sx={{ mt: 3, mb: 2 }}
+                  disabled={isPending}
                 >
-                  Don&apos;t have an account? Sign up
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
+                  Sign In
+                </Button>
+                <Grid container justifyContent="flex-end">
+                  <Grid item>
+                    <Link
+                      href="/auth/signup"
+                      className="no-underline text-green-700 hover:underline"
+                    >
+                      Don&apos;t have an account? Sign up
+                    </Link>
+                  </Grid>
+                </Grid>
+              </Stack>
+            )}
+          </Form>
         </Stack>
       </CardContent>
     </Card>

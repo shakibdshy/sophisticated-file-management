@@ -138,7 +138,7 @@ export default function SignUpForm() {
                   href="/auth/signin"
                   className="no-underline text-green-700 hover:underline"
                 >
-                  Already have an account? Sign in
+                  Already have an account? Sign In
                 </Link>
               </Grid>
             </Grid>
