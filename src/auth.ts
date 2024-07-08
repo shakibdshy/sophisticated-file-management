@@ -9,11 +9,23 @@ declare module "next-auth" {
   interface Session {
     user: {
       role: Role;
-    } & DefaultSession["user"]
+    } & DefaultSession["user"];
   }
 }
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  events: {
+    async linkAccount({ user }) {
+      await db.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          emailVerified: new Date(),
+        },
+      });
+    },
+  },
   callbacks: {
     async session({ session, token }) {
       return {
@@ -22,14 +34,14 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           ...session.user,
           id: token.sub,
           role: token.role,
-        }
+        },
       };
     },
     async jwt({ token }) {
-      if(!token.sub) return token;
+      if (!token.sub) return token;
 
-      const existingUser =  await getUserById(token.sub);
-      if(!existingUser) return token;
+      const existingUser = await getUserById(token.sub);
+      if (!existingUser) return token;
 
       token.role = existingUser.role;
 

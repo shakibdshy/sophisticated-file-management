@@ -1,5 +1,5 @@
 import { auth, signOut } from "@/auth";
-import { Button } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 
 export default async function Dashboard() {
   const session = await auth();
@@ -13,6 +13,7 @@ export default async function Dashboard() {
           await signOut();
         }}
       >
+        <Avatar alt="Remy Sharp" src={session?.user?.image ?? "/avatar.png"} />
         <Button type="submit" variant="contained" color="error">
           Sign Out
         </Button>
