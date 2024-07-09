@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import SidebarLayout from "@/layouts";
 import { SessionProvider } from "next-auth/react";
 
 export default async function DashboardLayout({
@@ -8,5 +9,9 @@ export default async function DashboardLayout({
 }) {
   const session = await auth();
 
-  return <SessionProvider session={session}>{children}</SessionProvider>;
+  return (
+    <SessionProvider session={session}>
+      <SidebarLayout>{children}</SidebarLayout>
+    </SessionProvider>
+  );
 }
