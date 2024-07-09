@@ -9,43 +9,57 @@ import FileStateCard from "./file-state-card";
 
 export default function FileState() {
   return (
-    <Grid container spacing={{ xs: 2, md: 5 }} columns={12}>
-      <Grid xs={1} sm={2} md={3}>
+    <Grid container spacing={{ xs: 2, md: 3, xl: 5 }} columns={12}>
+      <Grid xs={6} sm={6} xl={3}>
         <FileStateCard
           title="Images"
           icon={
-            <BurstModeIcon sx={{ width: 60, height: 60 }} color="secondary" />
+            <BurstModeIcon
+              sx={{ width: { xs: 40, md: 60 }, height: { xs: 40, md: 60 } }}
+              color="secondary"
+            />
           }
           progressValue={50}
           minStored={`${115.11} MB`}
           maxStored={`${300.0} MB`}
         />
       </Grid>
-      <Grid xs={1} sm={2} md={3}>
-        <FileStateCard
-          title="Video"
-          icon={<DuoIcon sx={{ width: 60, height: 60 }} color="warning" />}
-          progressValue={50}
-          minStored={`${115.11} MB`}
-          maxStored={`${300.0} MB`}
-        />
-      </Grid>
-      <Grid xs={1} sm={2} md={3}>
+      <Grid xs={6} sm={6} xl={3}>
         <FileStateCard
           title="Video"
           icon={
-            <LibraryMusicIcon sx={{ width: 60, height: 60 }} color="info" />
+            <DuoIcon
+              sx={{ width: { xs: 40, md: 60 }, height: { xs: 40, md: 60 } }}
+              color="warning"
+            />
           }
           progressValue={50}
           minStored={`${115.11} MB`}
           maxStored={`${300.0} MB`}
         />
       </Grid>
-      <Grid xs={1} sm={2} md={3}>
+      <Grid xs={6} sm={6} xl={3}>
         <FileStateCard
           title="Video"
           icon={
-            <AssignmentIcon sx={{ width: 60, height: 60 }} color="success" />
+            <LibraryMusicIcon
+              sx={{ width: { xs: 40, md: 60 }, height: { xs: 40, md: 60 } }}
+              color="info"
+            />
+          }
+          progressValue={50}
+          minStored={`${115.11} MB`}
+          maxStored={`${300.0} MB`}
+        />
+      </Grid>
+      <Grid xs={6} sm={6} xl={3}>
+        <FileStateCard
+          title="Video"
+          icon={
+            <AssignmentIcon
+              sx={{ width: { xs: 40, md: 60 }, height: { xs: 40, md: 60 } }}
+              color="success"
+            />
           }
           progressValue={50}
           minStored={`${115.11} MB`}

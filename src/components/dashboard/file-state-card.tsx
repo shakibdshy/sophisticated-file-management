@@ -6,7 +6,7 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import BurstModeIcon from "@mui/icons-material/BurstMode";
+import { FileStateCardProps } from "@/types";
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 8,
@@ -20,14 +20,6 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "light" ? "#1a90ff" : "#308fe8",
   },
 }));
-
-interface FileStateCardProps {
-  title: string;
-  icon?: React.ReactNode;
-  progressValue?: number;
-  minStored?: string | number;
-  maxStored?: string | number;
-}
 
 export default function FileStateCard({
   title,

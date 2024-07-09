@@ -44,7 +44,7 @@ export default function SidebarLayout({
         sx={{
           flexGrow: 1,
           p: 3,
-          width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
+          width: { xs: "100%", sm: `calc(100% - ${DRAWER_WIDTH}px)` },
         }}
       >
         {children}

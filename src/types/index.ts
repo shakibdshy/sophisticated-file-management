@@ -10,3 +10,11 @@ export interface ProfileMenuProps {
   user: User;
   data: profileData[];
 }
+
+export interface FileStateCardProps {
+  title: string;
+  icon?: React.ReactNode;
+  progressValue?: number;
+  minStored?: string | number;
+  maxStored?: string | number;
+}
