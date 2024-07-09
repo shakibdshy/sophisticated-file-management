@@ -21,7 +21,7 @@ export default function SidebarWithDrawer({
       <Box
         component="nav"
         sx={{ width: { md: DRAWER_WIDTH }, flexShrink: { md: 0 } }}
-        aria-label="mailbox folders"
+        aria-label="Sidebar"
       >
         <Drawer
           variant="temporary"

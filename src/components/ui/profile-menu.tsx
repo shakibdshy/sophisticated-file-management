@@ -33,7 +33,6 @@ export default function ProfileMenu({ title, user, data }: ProfileMenuProps) {
       </Tooltip>
       <Menu
         sx={{ mt: "45px" }}
-        id="menu-appbar"
         anchorEl={anchorElUser}
         anchorOrigin={{
           vertical: "top",
@@ -49,9 +48,9 @@ export default function ProfileMenu({ title, user, data }: ProfileMenuProps) {
       >
         {data.map((item) => (
           <MenuItem
-            key={item.name}          
+            key={item.name}
           >
-            <Link href={item.href} underline="none">
+            <Link href={item.href} underline="none" color="inherit">
               <Typography textAlign="center">{item.name}</Typography>
             </Link>
           </MenuItem>
