@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
-import "./globals.css";
-import theme from "@/config/theme";
+import { StyledEngineProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import ThemeProvider from "@/config/theme-provider";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Sophisticated File Management System",
@@ -20,7 +20,7 @@ export default function RootLayout({
       <body id="root">
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider>
               <CssBaseline />
               {children}
             </ThemeProvider>
