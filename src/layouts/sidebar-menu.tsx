@@ -1,7 +1,15 @@
-import { Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import {
+  Divider,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { menuItems } from "./menu-items";
 
 export default function SidebarMenu() {
@@ -20,10 +28,8 @@ export default function SidebarMenu() {
       <List>
         {menuItems.map((item, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton LinkComponent="a" href={item.href}>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
+            <ListItemButton component="a" href={item.href}>
+              <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.name} />
             </ListItemButton>
           </ListItem>
