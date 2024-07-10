@@ -1,4 +1,10 @@
 import { Container, Stack, Box, Typography, Button } from "@mui/material";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sophisticated File Management System",
+  description: "A file management system that is easy to use and understand.",
+}
 
 export default function Home() {
   return (

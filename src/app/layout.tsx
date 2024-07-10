@@ -9,6 +9,7 @@ import { ourFileRouter } from "./api/uploadthing/core";
 import { Toaster } from "sonner";
 import "@uploadthing/react/styles.css";
 import "./globals.css";
+import RightDrawer from "@/components/common/right.drawer";
 
 export const metadata: Metadata = {
   title: "Sophisticated File Management System",
@@ -37,6 +38,7 @@ export default function RootLayout({
                   },
                 }}
               />
+              <RightDrawer />
               {children}
             </ThemeProvider>
           </StyledEngineProvider>
