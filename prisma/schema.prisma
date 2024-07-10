@@ -30,6 +30,7 @@ model User {
   password      String?
   image         String?
   accounts      Account[]
+  files         File[]
   role          Role      @default(VIEWER)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -54,4 +55,19 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
+}
+
+model File {
+  id        String   @id @default(cuid())
+  name      String
+  key       String?
+  url       String?
+  type      String?
+  size      Int?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([userId])
 }

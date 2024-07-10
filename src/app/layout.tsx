@@ -6,6 +6,7 @@ import ThemeProvider from "@/config/theme-provider";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
+import { Toaster } from "sonner";
 import "@uploadthing/react/styles.css";
 import "./globals.css";
 
@@ -27,6 +28,15 @@ export default function RootLayout({
           <StyledEngineProvider injectFirst>
             <ThemeProvider>
               <CssBaseline />
+              <Toaster
+                position="top-center"
+                toastOptions={{
+                  classNames: {
+                    success: "bg-green-700 text-white",
+                    error: "bg-red-700 text-white",
+                  },
+                }}
+              />
               {children}
             </ThemeProvider>
           </StyledEngineProvider>
