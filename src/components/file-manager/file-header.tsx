@@ -1,6 +1,6 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-import React from "react";
-import UploadFile from "./upload-file-button";
+import { Box, Stack, Typography } from "@mui/material";
+import UploadFile from "@/components/file-manager/upload-file-button";
+import CreateWhiteboard from "@/components/file-manager/create-whiteboard-button";
 
 export default function FileHeader() {
   return (
@@ -10,9 +10,7 @@ export default function FileHeader() {
           Manage Files
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <Button variant="contained" color="secondary">
-            Create Whiteboard
-          </Button>
+          <CreateWhiteboard />
           <UploadFile />
         </Box>
       </Stack>

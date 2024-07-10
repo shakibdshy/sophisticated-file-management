@@ -1,7 +1,7 @@
 "use server";
 
 import bcrypt from "bcryptjs";
-import { signUpSchema } from "@/schemas/auth.schema";
+import { signUpSchema } from "@/validations/auth.schema";
 import * as z from "zod";
 import { db } from "@/utils/db";
 import { getUserByEmail } from "@/data/user";

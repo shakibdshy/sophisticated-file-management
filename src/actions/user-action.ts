@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { db } from "@/utils/db";
 import { User } from "@prisma/client";
-import { userSchema } from "@/schemas/user.schema";
+import { userSchema } from "@/validations/user.schema";
 import { revalidatePath } from "next/cache";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 

@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { signInSchema } from "@/schemas/auth.schema";
+import { signInSchema } from "@/validations/auth.schema";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import type { NextAuthConfig } from "next-auth";

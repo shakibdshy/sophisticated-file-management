@@ -17,7 +17,7 @@ import {
 import SocialIcon from "./social-icon";
 import Link from "next/link";
 import { Form } from "../ui/form";
-import { signInSchema, SignInSchema } from "@/schemas/auth.schema";
+import { signInSchema, SignInSchema } from "@/validations/auth.schema";
 import { useState, useTransition } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { signIn } from "next-auth/react";

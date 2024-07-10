@@ -1,6 +1,6 @@
 "use server";
 
-import { signInSchema } from "@/schemas/auth.schema";
+import { signInSchema } from "@/validations/auth.schema";
 import * as z from "zod";
 import { signIn } from "@/auth";
 import { defaultRedirectPath } from "@/config/routes";

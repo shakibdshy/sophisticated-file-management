@@ -18,7 +18,7 @@ import SocialIcon from "./social-icon";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { SubmitHandler } from "react-hook-form";
-import { signUpSchema, SignUpSchema } from "@/schemas/auth.schema";
+import { signUpSchema, SignUpSchema } from "@/validations/auth.schema";
 import { Form } from "../ui/form";
 import { signUpAction } from "@/actions/signup-action";
 
