@@ -1,13 +1,13 @@
-export const publicRoutes = ["/"];
+export const publicRoutes = ["/", "/api/uploadthing"];
 
 export const authRoutes = [
   "/auth/signin",
   "/auth/signup",
-//   "/forgot-password",
-//   "/reset-password",
+  //   "/forgot-password",
+  //   "/reset-password",
 ];
 
-export const apiAuthPrefix = "/api/auth";
+export const apiAuthPrefix = ["/api/auth"];
 
 /**
  * The Default redirect path after login
