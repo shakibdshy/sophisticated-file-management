@@ -11,8 +11,4 @@ export const profileData = [
         name: "Users",
         href: "/dashboard/admin/users",
     },
-    {
-        name: "Logout",
-        href: "/auth/signout",
-    }
 ]
