@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/material";
+import { signOut } from "next-auth/react";
 import { useState } from "react";
 
 export default function ProfileMenu({ title, user, data }: ProfileMenuProps) {
@@ -22,6 +23,10 @@ export default function ProfileMenu({ title, user, data }: ProfileMenuProps) {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    signOut();
   };
 
   return (
@@ -47,14 +52,15 @@ export default function ProfileMenu({ title, user, data }: ProfileMenuProps) {
         onClose={handleCloseUserMenu}
       >
         {data.map((item) => (
-          <MenuItem
-            key={item.name}
-          >
+          <MenuItem key={item.name}>
             <Link href={item.href} underline="none" color="inherit">
               <Typography textAlign="center">{item.name}</Typography>
             </Link>
           </MenuItem>
         ))}
+        <MenuItem onClick={handleLogout}>
+          <Typography textAlign="center">Logout</Typography>
+        </MenuItem>
       </Menu>
     </Box>
   );
