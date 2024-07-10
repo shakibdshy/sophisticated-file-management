@@ -10,6 +10,7 @@ import { toast } from "sonner";
 
 const initialValues: FileSchema = {
   name: "Untitled File",
+  type: "file",
 };
 
 export default function CreateWhiteboardForm() {
@@ -17,8 +18,12 @@ export default function CreateWhiteboardForm() {
 
   const onSubmit: SubmitHandler<FileSchema> = (data) => {
     setIsPending(() => {
-        uploadFile(data);
-        toast.success("Created successfully");
+      const fileData = {
+        name: data.name,
+        type: "file",
+      };
+      uploadFile(fileData);
+      toast.success("Created successfully");
     });
   };
   return (
