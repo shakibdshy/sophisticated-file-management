@@ -13,17 +13,26 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import { useRouter } from "next/navigation";
+import { useDebounce } from "use-debounce";
 
 export default function SearchFilter() {
   const [type, setType] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
+  const [query] = useDebounce(search, 500);
+  const router = useRouter();
 
   const handleChange = (event: SelectChangeEvent) => {
     setType(event.target.value as string);
   };
+
+  const encodedSearch = encodeURI(query);
+  router.push(`/files?search=${encodedSearch}`);
+
   return (
     <Box sx={{ py: 6 }}>
       <Stack direction="row" spacing={2} alignItems="center">
-        <Box sx={{ '& > :not(style)': { m: 1 } }}>
+        <Box sx={{ "& > :not(style)": { m: 1 } }}>
           <TextField
             variant="outlined"
             fullWidth
@@ -35,6 +44,8 @@ export default function SearchFilter() {
                 </InputAdornment>
               ),
             }}
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
             sx={{
               maxWidth: 245,
               "& .MuiInputBase-root": {
@@ -43,6 +54,7 @@ export default function SearchFilter() {
             }}
           />
         </Box>
+
         <Box sx={{ minWidth: 164 }}>
           <FormControl fullWidth size="medium">
             <InputLabel id="demo-simple-select-label">
@@ -55,10 +67,10 @@ export default function SearchFilter() {
               label="Filter By: Type"
               onChange={handleChange}
             >
-              <MenuItem value={10}>All</MenuItem>
-              <MenuItem value={20}>File</MenuItem>
-              <MenuItem value={20}>Image</MenuItem>
-              <MenuItem value={30}>Pdf</MenuItem>
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="file">File</MenuItem>
+              <MenuItem value="image">Image</MenuItem>
+              <MenuItem value="pdf">Pdf</MenuItem>
             </Select>
           </FormControl>
         </Box>

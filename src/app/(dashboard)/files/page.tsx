@@ -10,8 +10,16 @@ export const metadata: Metadata = {
   description: "Manage your files",
 };
 
-export default async function File() {
-  const files = await getFiles();
+export default async function File({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const search =
+    typeof searchParams.search === "string" ? searchParams.search : undefined;
+
+  const type = searchParams.type as string | undefined;
+  const files = await getFiles({ query: search, type: type });
 
   return (
     <div className="mt-6">

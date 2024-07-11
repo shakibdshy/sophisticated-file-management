@@ -9,7 +9,7 @@ export const menuItems = [
   },
   {
     name: "File Manager",
-    href: "/file",
+    href: "/files",
     icon: <PermMediaRoundedIcon />,
   },
 ];
