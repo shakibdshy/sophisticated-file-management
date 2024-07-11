@@ -1,10 +1,11 @@
-import { Container, Stack, Box, Typography, Button } from "@mui/material";
+import AuthButton from "@/components/auth/auth-button";
+import { Container, Stack, Box, Typography } from "@mui/material";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Sophisticated File Management System",
   description: "A file management system that is easy to use and understand.",
-}
+};
 
 export default function Home() {
   return (
@@ -27,14 +28,7 @@ export default function Home() {
               >
                 Welcome to Sophisticated File Management System
               </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                href="/auth/signin"
-              >
-                Sign In
-              </Button>
+              <AuthButton />
             </Stack>
           </Box>
         </Container>

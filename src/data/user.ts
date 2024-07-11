@@ -17,12 +17,3 @@ export async function getUserById(id: string) {
     return null;
   }
 }
-
-export async function getAllUsers() {
-  try {
-    const users = await db.user.findMany({});
-    return {isLoading: false, data: users};
-  } catch {
-    return null;
-  }
-}

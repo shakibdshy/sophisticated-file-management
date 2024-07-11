@@ -10,17 +10,20 @@ import { Toaster } from "sonner";
 import "@uploadthing/react/styles.css";
 import "./globals.css";
 import RightDrawer from "@/components/common/right.drawer";
+import { auth } from "@/auth";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Sophisticated File Management System",
   description: "A sophisticated file Management System",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
     <html lang="en">
       <body id="root">
@@ -39,7 +42,9 @@ export default function RootLayout({
                 }}
               />
               <RightDrawer />
-              {children}
+              <SessionProvider session={session}>
+                {children}
+              </SessionProvider>
             </ThemeProvider>
           </StyledEngineProvider>
         </AppRouterCacheProvider>
