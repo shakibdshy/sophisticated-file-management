@@ -1,9 +1,17 @@
+"use client";
+
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Stack, Typography } from "@mui/material";
 
-export default function AllFiles({columns, rows}: {columns: GridColDef<(typeof rows)[number]>[], rows: any}) {
+export default function Table({
+  columns,
+  rows,
+}: {
+  columns: GridColDef<(typeof rows)[number]>[];
+  rows: any;
+}) {
   return (
     <Stack spacing={3} direction="column" sx={{ width: "100%", mt: 4 }}>
       <Typography variant="h5" component="div" fontWeight="semibold">

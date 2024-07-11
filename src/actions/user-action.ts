@@ -9,8 +9,8 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export async function getAllUsers() {
   try {
-    const users = await db.user.findMany({});
-    return { isLoading: false, data: users };
+    const users = await db.user.findMany();
+    return users;
   } catch {
     return null;
   }
