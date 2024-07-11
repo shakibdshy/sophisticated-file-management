@@ -31,7 +31,7 @@ export default async function RootLayout({
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <StyledEngineProvider injectFirst>
             <ThemeProvider>
-              <CssBaseline />
+              {/* <CssBaseline /> */}
               <Toaster
                 position="top-center"
                 toastOptions={{
