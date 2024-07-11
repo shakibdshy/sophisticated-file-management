@@ -1,7 +1,12 @@
 import CursorSVG from "@/components/icons/cursor-svg";
 import { CursorChatProps, CursorMode } from "@/types/liveblocks";
 
-const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: CursorChatProps) => {
+export default function CursorChat({
+  cursor,
+  cursorState,
+  setCursorState,
+  updateMyPresence,
+}: CursorChatProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateMyPresence({ message: e.target.value });
     setCursorState({
@@ -44,7 +49,9 @@ const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: C
               borderRadius: 20,
             }}
           >
-            {cursorState.previousMessage && <div>{cursorState.previousMessage}</div>}
+            {cursorState.previousMessage && (
+              <div>{cursorState.previousMessage}</div>
+            )}
             <input
               className="z-10 w-60 border-none	bg-transparent text-white placeholder-blue-300 outline-none"
               autoFocus={true}
@@ -59,6 +66,4 @@ const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: C
       )}
     </div>
   );
-};
-
-export default CursorChat;
+}

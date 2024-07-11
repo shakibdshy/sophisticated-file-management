@@ -45,13 +45,26 @@ export type CursorChatProps = {
 };
 
 export type Reaction = {
-    value: string;
-    timestamp: number;
-    point: { x: number; y: number };
-  };
-  
-  export type ReactionEvent = {
-    x: number;
-    y: number;
-    value: string;
-  };
+  value: string;
+  timestamp: number;
+  point: { x: number; y: number };
+};
+
+export type ReactionEvent = {
+  x: number;
+  y: number;
+  value: string;
+};
+
+export type ActiveElement = {
+  name: string;
+  value: string;
+  icon: string;
+} | null;
+
+export type NavbarProps = {
+  activeElement: ActiveElement;
+  imageInputRef: React.MutableRefObject<HTMLInputElement | null>;
+  handleImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleActiveElement: (element: ActiveElement) => void;
+};
