@@ -42,9 +42,7 @@ export default async function RootLayout({
                 }}
               />
               <RightDrawer />
-              <SessionProvider session={session}>
-                {children}
-              </SessionProvider>
+              <SessionProvider session={session}>{children}</SessionProvider>
             </ThemeProvider>
           </StyledEngineProvider>
         </AppRouterCacheProvider>

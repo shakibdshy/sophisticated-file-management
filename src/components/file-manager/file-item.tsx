@@ -17,7 +17,7 @@ export default function FileItem({
     >
       <Link
         className="flex flex-col items-center justify-center w-full text-center no-underline text-gray-900"
-        href={`/dashboard/file/${file.id}`}
+        href={`/preview/${file.id}`}
       >
         <div className="relative h-14 w-auto">
           <DynamicFileIcon
