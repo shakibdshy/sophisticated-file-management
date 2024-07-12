@@ -1,6 +1,6 @@
 "use client";
 
-import { Stack, Typography, useMediaQuery } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import {
   flexRender,
   type Table as ReactTableType,
@@ -28,8 +28,6 @@ export default function Table<TData extends Record<string, any>>({
   noDataFallback,
   tableRootClassName,
 }: TableType<TData>) {
-  const isSmall = useMediaQuery("(max-width: 424px)");
-
   if (table === null || table === undefined) return null;
 
   const isEmptyTable = total === 0;
