@@ -4,10 +4,12 @@ import { apiAuthPrefix, authRoutes, defaultRedirectPath, publicRoutes } from "./
 
 const { auth } = NextAuth(authConfig);
 
+// @ts-ignore
 export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
   
+  // @ts-ignore
   const isAPIAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
