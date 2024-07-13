@@ -168,7 +168,7 @@ export default function SignUpForm() {
                 <Grid container justifyContent="flex-end">
                   <Grid item>
                     <Link
-                      href="/auth/signup"
+                      href="/auth/signin"
                       className="no-underline text-green-700 hover:underline"
                     >
                       Already have an account? Sign In
